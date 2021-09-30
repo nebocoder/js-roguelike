@@ -1,0 +1,9 @@
+body {
+  background-color: indigo;
+  text-align: center;
+  margin-top: 50px;
+}
+
+canvas {
+  outline: 1px solid white;
+}

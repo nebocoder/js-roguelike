@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/style.css" />
+    <title>JS Roguelike</title>
+  </head>
+  <body>
+    <canvas></canvas>
+
+    <script src="js/game.js"></script>
+    <script src="js/map.js"></script>
+    <script src="js/monster.js"></script>
+    <script src="js/spell.js"></script>
+    <script src="js/tile.js"></script>
+    <script src="js/util.js"></script>
+
+    <script>
+      tileSize = 64
+      numTiles = 9
+      uiWidth = 4
+
+      x = y = 0
+
+      document.querySelector("html").onkeypress = function (e) {
+        if (e.key == "w") y--
+        if (e.key == "s") y++
+        if (e.key == "a") x--
+        if (e.key == "d") x++
+      }
+
+      function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height)
+
+        ctx.fillRect(x * tileSize, y * tileSize, tileSize, tileSize)
+      }
+
+      setInterval(draw, 15)
+
+      setupCanvas()
+    </script>
+  </body>
+</html>
