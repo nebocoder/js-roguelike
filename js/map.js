@@ -27,3 +27,15 @@ function getTile(x, y) {
     return new Wall(x, y)
   }
 }
+
+function randomPassableTile() {
+  let tile
+  tryTo("get random possible tile", function () {
+    let x = randomRange(0, numTiles - 1)
+    let y = randomRange(0, numTiles - 1)
+    tile = getTile(x, y)
+    return tile.passable && !tile.monster
+  })
+
+  return tile
+}
