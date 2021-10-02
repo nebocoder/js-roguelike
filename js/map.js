@@ -2,6 +2,8 @@ function generateLevel() {
   tryTo("generate map", function () {
     return generateTiles() == randomPassableTile().getConnectedTiles().length
   })
+
+  generateMonsters()
 }
 
 function generateTiles() {
@@ -46,4 +48,18 @@ function randomPassableTile() {
   })
 
   return tile
+}
+
+function generateMonsters() {
+  monsters = []
+  let numMonsters = level + 1
+  for (let i = 0; i < numMonsters; i++) {
+    spawnMonster()
+  }
+
+  function spawnMonster() {
+    let monsterType = shuffle([Sova, Oko, Hobot, Ting, Glamon])[0]
+    let monster = new monsterType(randomPassableTile())
+    monsters.push(monster)
+  }
 }

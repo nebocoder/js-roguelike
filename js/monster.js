@@ -35,3 +35,29 @@ class Player extends Monster {
     this.isPlayer = true
   }
 }
+
+class Sova extends Monster {
+  constructor(tile) {
+    super(tile, 4, 1)
+  }
+}
+class Oko extends Monster {
+  constructor(tile) {
+    super(tile, 5, 1)
+  }
+}
+class Hobot extends Monster {
+  constructor(tile) {
+    super(tile, 6, 2)
+  }
+}
+class Ting extends Monster {
+  constructor(tile) {
+    super(tile, 7, 2)
+  }
+}
+class Glamon extends Monster {
+  constructor(tile) {
+    super(tile, 8, 3)
+  }
+}
