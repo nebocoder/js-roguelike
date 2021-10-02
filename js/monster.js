@@ -5,6 +5,22 @@ class Monster {
     this.hp = hp
   }
 
+  update() {
+    this.doStuff()
+  }
+
+  doStuff() {
+    let neighbors = this.tile.getAdjacentPassableNeighbors()
+
+    neighbors = neighbors.filter((t) => !t.monster || t.monster.isPlayer)
+
+    if (neighbors.length) {
+      neighbors.sort((a, b) => a.dist(player.tile) - b.dist(player.tile))
+      let newTile = neighbors[0]
+      this.tryMove(newTile.x - this.tile.x, newTile.y - this.tile.y)
+    }
+  }
+
   draw() {
     drawSprite(this.sprite, this.tile.x, this.tile.y)
   }
@@ -33,6 +49,12 @@ class Player extends Monster {
   constructor(tile) {
     super(tile, 0, 3)
     this.isPlayer = true
+  }
+
+  tryMove(dx, dy) {
+    if (super.tryMove(dx, dy)) {
+      tick()
+    }
   }
 }
 
