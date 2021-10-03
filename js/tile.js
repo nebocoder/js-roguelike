@@ -6,6 +6,16 @@ class Tile {
     this.passable = passable
   }
 
+  replace(newTileType) {
+    tiles[this.x][this.y] = new newTileType(this.x, this.y)
+    return tiles[this.x][this.y]
+  }
+
+  // Manhattan distance
+  dist(other) {
+    return Math.abs(this.x - other.x) + Math.abs(this.y - other.y)
+  }
+
   getNeighbor(dx, dy) {
     return getTile(this.x + dx, this.y + dy)
   }
