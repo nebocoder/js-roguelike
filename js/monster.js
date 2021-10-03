@@ -5,7 +5,16 @@ class Monster {
     this.hp = hp
   }
 
+  heal(damage) {
+    this.hp = Math.min(maxHp, this.hp + damage)
+  }
+
   update() {
+    if (this.stunned) {
+      this.stunned = false
+      return
+    }
+
     this.doStuff()
   }
 
@@ -42,10 +51,31 @@ class Monster {
     if (newTile.passable) {
       if (!newTile.monster) {
         this.move(newTile)
+      } else {
+        if (this.isPlayer !== newTile.monster.isPlayer) {
+          this.attackedThisTurn = true
+
+          newTile.monster.stunned = true
+
+          newTile.monster.hit(1)
+        }
       }
 
       return true
     }
+  }
+
+  hit(damage) {
+    this.hp -= damage
+    if (this.hp <= 0) {
+      this.die()
+    }
+  }
+
+  die() {
+    this.dead = true
+    this.tile.monster = null
+    this.sprite = 1
   }
 
   move(tile) {
@@ -53,7 +83,7 @@ class Monster {
       this.tile.monster = null
     }
     this.tile = tile
-    this.monster = this
+    tile.monster = this
   }
 }
 
@@ -74,6 +104,15 @@ class Sova extends Monster {
   constructor(tile) {
     super(tile, 4, 1)
   }
+
+  doStuff() {
+    this.attackedThisTurn = false
+    super.doStuff()
+
+    if (!this.attackedThisTurn) {
+      super.doStuff()
+    }
+  }
 }
 class Oko extends Monster {
   constructor(tile) {
@@ -84,14 +123,41 @@ class Hobot extends Monster {
   constructor(tile) {
     super(tile, 6, 2)
   }
+
+  doStuff() {
+    let neighbors = this.tile.getAdjacentPassableNeighbors()
+    if (neighbors.length) {
+      this.tryMove(neighbors[0].x - this.tile.x, neighbors[0].y - this.tile.y)
+    }
+  }
 }
-class Ting extends Monster {
+class Teko extends Monster {
   constructor(tile) {
     super(tile, 7, 2)
+  }
+
+  update() {
+    let startedStunned = this.stunned
+    super.update()
+    if (!startedStunned) {
+      this.stunned = true
+    }
   }
 }
 class Glamon extends Monster {
   constructor(tile) {
     super(tile, 8, 3)
+  }
+
+  doStuff() {
+    let neighbors = this.tile
+      .getAdjacentNeighbors()
+      .filter((t) => !t.passable && inBounds(t.x, t.y))
+    if (neighbors.length) {
+      neighbors[0].replace(Floor)
+      this.heal(0.5)
+    } else {
+      super.doStuff()
+    }
   }
 }

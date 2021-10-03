@@ -58,7 +58,7 @@ function generateMonsters() {
   }
 
   function spawnMonster() {
-    let monsterType = shuffle([Sova, Oko, Hobot, Ting, Glamon])[0]
+    let monsterType = shuffle([Sova, Oko, Hobot, Teko, Glamon])[0]
     let monster = new monsterType(randomPassableTile())
     monsters.push(monster)
   }
