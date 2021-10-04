@@ -43,6 +43,13 @@ function draw() {
   }
 }
 
+// Code repeat from map.js - fixes spawnMonster in tick
+function spawnMonster() {
+  let monsterType = shuffle([Sova, Oko, Hobot, Teko, Glamon])[0]
+  let monster = new monsterType(randomPassableTile())
+  monsters.push(monster)
+}
+
 function tick() {
   for (let k = monsters.length - 1; k >= 0; k--) {
     if (!monsters[k].dead) {
