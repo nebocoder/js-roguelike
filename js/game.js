@@ -25,19 +25,29 @@ function drawSprite(sprite, x, y) {
 }
 
 function draw() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height)
+  if (gameState === "running" || gameState === "dead") {
+    ctx.clearRect(0, 0, canvas.width, canvas.height)
 
-  for (let i = 0; i < numTiles; i++) {
-    for (let j = 0; j < numTiles; j++) {
-      getTile(i, j).draw()
+    for (let i = 0; i < numTiles; i++) {
+      for (let j = 0; j < numTiles; j++) {
+        getTile(i, j).draw()
+      }
     }
-  }
 
-  for (let i = 0; i < monsters.length; i++) {
-    monsters[i].draw()
-  }
+    for (let i = 0; i < monsters.length; i++) {
+      monsters[i].draw()
+    }
 
-  player.draw()
+    player.draw()
+    drawText("Level: " + level, 30, false, 55, "white")
+  }
+}
+
+// Code repeat from map.js - fixes spawnMonster in tick
+function spawnMonster() {
+  let monsterType = shuffle([Sova, Oko, Hobot, Teko, Glamon])[0]
+  let monster = new monsterType(randomPassableTile())
+  monsters.push(monster)
 }
 
 function tick() {
@@ -48,4 +58,54 @@ function tick() {
       monsters.splice(k, 1)
     }
   }
+
+  if (player.dead) {
+    gameState = "dead"
+  }
+
+  spawnCounter--
+  if (spawnCounter <= 0) {
+    spawnMonster()
+    spawnCounter = spawnRate
+    spawnRate--
+  }
+}
+
+function showTitle() {
+  ctx.fillStyle = "rgba(0, 0, 0, 0.75)"
+  ctx.fillRect(0, 0, canvas.width, canvas.height)
+
+  gameState = "title"
+  drawText("MACABRE", 70, true, canvas.height / 2 - 110, "white")
+  drawText("DESCENT", 40, true, canvas.height / 2 - 50, "white")
+}
+
+function startGame() {
+  level = 1
+  startLevel(startingHp)
+
+  gameState = "running"
+}
+
+function startLevel(playerHp) {
+  spawnRate = 15
+  spawnCounter = spawnRate
+  generateLevel()
+
+  player = new Player(randomPassableTile())
+  player.hp = playerHp
+  randomPassableTile().replace(Exit)
+}
+
+function drawText(text, size, centered, textY, color) {
+  ctx.fillStyle = color
+  ctx.font = size + "px sans-serif"
+  let textX
+  if (centered) {
+    textX = (canvas.width - ctx.measureText(text).width) / 2
+  } else {
+    textX = canvas.width - uiWidth * tileSize + 25
+  }
+
+  ctx.fillText(text, textX, textY)
 }
