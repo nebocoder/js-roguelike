@@ -39,6 +39,7 @@ function draw() {
     }
 
     player.draw()
+    drawText("Level: " + level, 30, false, 55, "white")
   }
 }
 
@@ -68,6 +69,8 @@ function showTitle() {
   ctx.fillRect(0, 0, canvas.width, canvas.height)
 
   gameState = "title"
+  drawText("MACABRE", 70, true, canvas.height / 2 - 110, "white")
+  drawText("DESCENT", 40, true, canvas.height / 2 - 50, "white")
 }
 
 function startGame() {
@@ -85,4 +88,17 @@ function startLevel(playerHp) {
   player = new Player(randomPassableTile())
   player.hp = playerHp
   randomPassableTile().replace(Exit)
+}
+
+function drawText(text, size, centered, textY, color) {
+  ctx.fillStyle = color
+  ctx.font = size + "px sans-serif"
+  let textX
+  if (centered) {
+    textX = (canvas.width - ctx.measureText(text).width) / 2
+  } else {
+    textX = canvas.width - uiWidth * tileSize + 25
+  }
+
+  ctx.fillText(text, textX, textY)
 }
