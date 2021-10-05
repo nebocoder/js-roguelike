@@ -40,6 +40,7 @@ function draw() {
 
     player.draw()
     drawText("Level: " + level, 30, false, 55, "white")
+    drawText("Score: " + score, 30, false, 100, "white")
   }
 }
 
@@ -82,6 +83,7 @@ function showTitle() {
 
 function startGame() {
   level = 1
+  score = 0
   startLevel(startingHp)
 
   gameState = "running"
