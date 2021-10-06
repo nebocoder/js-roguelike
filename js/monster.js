@@ -4,6 +4,8 @@ class Monster {
     this.sprite = sprite
     this.hp = hp
     this.teleportCounter = 2
+    this.offsetX = 0
+    this.offsetY = 0
   }
 
   heal(damage) {
@@ -32,21 +34,32 @@ class Monster {
     }
   }
 
+  getDisplayX() {
+    return this.tile.x + this.offsetX
+  }
+
+  getDisplayY() {
+    return this.tile.y + this.offsetY
+  }
+
   draw() {
     if (this.teleportCounter > 0) {
-      drawSprite(10, this.tile.x, this.tile.y)
+      drawSprite(10, this.getDisplayX(), this.getDisplayY())
     } else {
-      drawSprite(this.sprite, this.tile.x, this.tile.y)
+      drawSprite(this.sprite, this.getDisplayX(), this.getDisplayY())
       this.drawHp()
     }
+
+    this.offsetX -= Math.sign(this.offsetX) * (1 / 8)
+    this.offsetY -= Math.sign(this.offsetY) * (1 / 8)
   }
 
   drawHp() {
     for (let i = 0; i < this.hp; i++) {
       drawSprite(
         9,
-        this.tile.x + (i % 3) * (5 / 16),
-        this.tile.y - Math.floor(i / 3) * (5 / 16)
+        this.getDisplayX() + (i % 3) * (5 / 16),
+        this.getDisplayY() - Math.floor(i / 3) * (5 / 16)
       )
     }
   }
@@ -59,10 +72,11 @@ class Monster {
       } else {
         if (this.isPlayer !== newTile.monster.isPlayer) {
           this.attackedThisTurn = true
-
           newTile.monster.stunned = true
-
           newTile.monster.hit(1)
+          shakeAmount = 5
+          this.offsetX = (newTile.x - this.tile.x) / 2
+          this.offsetY = (newTile.y - this.tile.y) / 2
         }
       }
 
@@ -75,6 +89,12 @@ class Monster {
     if (this.hp <= 0) {
       this.die()
     }
+
+    if (this.isPlayer) {
+      playSound("hit1")
+    } else {
+      playSound("hit2")
+    }
   }
 
   die() {
@@ -86,6 +106,8 @@ class Monster {
   move(tile) {
     if (this.tile) {
       this.tile.monster = null
+      this.offsetX = this.tile.x - tile.x
+      this.offsetY = this.tile.y - tile.y
     }
     this.tile = tile
     tile.monster = this
