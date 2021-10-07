@@ -129,7 +129,7 @@ class Player extends Monster {
     }
   }
 
-  addSpells() {
+  addSpell() {
     let newSpell = shuffle(Object.keys(spells))[0]
     this.spells.push(newSpell)
   }

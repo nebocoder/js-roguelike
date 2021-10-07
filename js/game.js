@@ -42,6 +42,10 @@ function draw() {
     player.draw()
     drawText("Level: " + level, 30, false, 55, "white")
     drawText("Score: " + score, 30, false, 100, "white")
+    for (let i = 0; i < player.spells.length; i++) {
+      let spellText = i + 1 + ") " + (player.spells[i] || "")
+      drawText(spellText, 20, false, 160 + i * 40, "aqua")
+    }
   }
 }
 
