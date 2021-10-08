@@ -28,7 +28,7 @@ function rightPad(textArray) {
   textArray.forEach((text) => {
     text += ""
     for (let i = text.length; i < 10; i++) {
-      text += "  "
+      text += " "
     }
     finalText += text
   })

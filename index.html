@@ -4,6 +4,12 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="css/style.css" />
     <title>JS Roguelike</title>
   </head>
@@ -11,50 +17,11 @@
     <canvas></canvas>
 
     <script src="js/game.js"></script>
+    <script src="js/main.js"></script>
     <script src="js/map.js"></script>
-    <script src="js/monster.js"></script>
-    <script src="js/spell.js"></script>
     <script src="js/tile.js"></script>
+    <script src="js/monster.js"></script>
     <script src="js/util.js"></script>
-
-    <script>
-      tileSize = 64
-      numTiles = 9
-      uiWidth = 4
-      level = 1
-      maxHp = 6
-
-      x = y = 0
-
-      spritesheet = new Image()
-      spritesheet.src = "sprites/spritesheet.png"
-      spritesheet.onload = showTitle
-      gameState = "loading"
-
-      startingHp = 3
-      numLevels = 6
-      shakeAmount = 0
-      shakeX = 0
-      shakeY = 0
-
-      document.querySelector("html").onkeypress = function (e) {
-        if (gameState === "title") {
-          startGame()
-        } else if (gameState === "dead") {
-          showTitle()
-        } else if (gameState === "running") {
-          if (e.key == "w") player.tryMove(0, -1)
-          if (e.key == "s") player.tryMove(0, 1)
-          if (e.key == "a") player.tryMove(-1, 0)
-          if (e.key == "d") player.tryMove(1, 0)
-          if (e.key >= 1 && e.key <= 9) player.castSpell(e.key - 1)
-        }
-      }
-
-      setInterval(draw, 20)
-
-      setupCanvas()
-      initSounds()
-    </script>
+    <script src="js/spell.js"></script>
   </body>
 </html>

@@ -40,11 +40,11 @@ function draw() {
     }
 
     player.draw()
-    drawText("Level: " + level, 30, false, 55, "white")
-    drawText("Score: " + score, 30, false, 100, "white")
+    drawText("Level: " + level, 20, false, 55, "white")
+    drawText("Score: " + score, 20, false, 100, "white")
     for (let i = 0; i < player.spells.length; i++) {
       let spellText = i + 1 + ") " + (player.spells[i] || "")
-      drawText(spellText, 20, false, 160 + i * 40, "aqua")
+      drawText(spellText, 15, false, 160 + i * 40, "green")
     }
   }
 }
@@ -107,7 +107,7 @@ function startLevel(playerHp, playerSpells) {
 
   player = new Player(randomPassableTile())
   player.hp = playerHp
-  if (player.spells) {
+  if (playerSpells) {
     player.spells = playerSpells
   }
   randomPassableTile().replace(Exit)
@@ -115,7 +115,7 @@ function startLevel(playerHp, playerSpells) {
 
 function drawText(text, size, centered, textY, color) {
   ctx.fillStyle = color
-  ctx.font = size + "px sans-serif"
+  ctx.font = size + "px 'Press Start 2P', sans-serif"
   let textX
   if (centered) {
     textX = (canvas.width - ctx.measureText(text).width) / 2
@@ -157,18 +157,16 @@ function drawScores() {
   if (scores.length) {
     drawText(
       rightPad(["RUN", "SCORE", "HIGH"]),
-      18,
+      14,
       true,
       canvas.height / 2,
       "white"
     )
-
     let newestScore = scores.pop()
     scores.sort(function (a, b) {
       return b.totalScore - a.totalScore
     })
     scores.unshift(newestScore)
-
     for (let i = 0; i < Math.min(10, scores.length); i++) {
       let scoreText = rightPad([
         scores[i].run,
@@ -176,11 +174,11 @@ function drawScores() {
         scores[i].totalScore,
       ])
       drawText(
-        scoreText,
-        18,
+        "  " + scoreText,
+        14,
         true,
         canvas.height / 2 + 24 + i * 24,
-        i == 0 ? "aqua" : "white"
+        i == 0 ? "green" : "white"
       )
     }
   }
