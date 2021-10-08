@@ -107,7 +107,7 @@ function startLevel(playerHp, playerSpells) {
 
   player = new Player(randomPassableTile())
   player.hp = playerHp
-  if (player.spells) {
+  if (playerSpells) {
     player.spells = playerSpells
   }
   randomPassableTile().replace(Exit)
