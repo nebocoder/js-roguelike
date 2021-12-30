@@ -1,5 +1,7 @@
 # Macabre Descent
 
+## You can now play the game at [this link](https://nebocoder.github.io/js-roguelike/).
+
 Roguelike made using vanilla JS.
 Game was made following [Javascript Broughlike Tutorial](https://nluqo.github.io/broughlike-tutorial/index.html), the idea is to improve the original code and create a more engaging game. This project is also a chance for me to explore GitHub workflow as this is the first project I'm working on thats going on here.
 
