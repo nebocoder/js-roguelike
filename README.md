@@ -12,7 +12,7 @@ Project TODOs:
 - [ ] Add features (monsters, better progression etc.)
 - [ ] Host the game online properly
 
-![1](https://user-images.githubusercontent.com/91620216/136694196-19443ec2-e664-4f3d-9612-e87fea2ac4ee.png)
-![2](https://user-images.githubusercontent.com/91620216/136694195-35733593-8f22-4d9e-9049-bc1b8306f190.png)
-![3](https://user-images.githubusercontent.com/91620216/136694192-e6a57f1f-ecac-4805-891f-4bb724e4f832.png)
-![4](https://user-images.githubusercontent.com/91620216/136694197-d0891928-16c3-410f-9dea-052edfc88af3.png)
+![Screenshot_1](https://user-images.githubusercontent.com/91620216/147757979-05fc8a8e-8e65-4548-85fb-615addecf1a4.png)
+![Screenshot 2](https://user-images.githubusercontent.com/91620216/147758056-a5b69272-7288-4839-ba42-7749fede476d.png)
+![Screenshot 3](https://user-images.githubusercontent.com/91620216/147758061-f681e3e7-86f9-47e6-ae62-ad67c0fb194c.png)
+![Screenshot 4](https://user-images.githubusercontent.com/91620216/147758067-15c2ffef-ce30-4c97-820e-de3c55956555.png)
