@@ -5,6 +5,8 @@
 Roguelike made using vanilla JS.
 Game was made following [Javascript Broughlike Tutorial](https://nluqo.github.io/broughlike-tutorial/index.html), the idea is to improve the original code and create a more engaging game, as I get introduced to more advanced programming concepts. This project is also a chance for me to explore GitHub workflow as this is the first project I'm working on thats going on here. I expect little activity stretched over long period of time for the project, but believe it can eventually get there.
 
+If you want to contribute to the project feel free to do so, I would love to learn more from/with someone while working on this.
+
 Project TODOs:
 - [x] Host the game online properly
 - [ ] Refactor code
