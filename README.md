@@ -7,13 +7,6 @@ Game was made following [Javascript Broughlike Tutorial](https://nluqo.github.io
 
 If you want to contribute to the project feel free to do so, I would love to learn more from/with someone while working on this.
 
-Project TODOs:
-- [x] Host the game online properly
-- [ ] Refactor code
-- [ ] Improve project structure
-- [ ] Improve game art and sounds
-- [ ] Add features (monsters, better progression etc.)
-
 ![Screenshot_1](https://user-images.githubusercontent.com/91620216/147757979-05fc8a8e-8e65-4548-85fb-615addecf1a4.png)
 ![Screenshot 2](https://user-images.githubusercontent.com/91620216/147758056-a5b69272-7288-4839-ba42-7749fede476d.png)
 ![Screenshot 3](https://user-images.githubusercontent.com/91620216/147758061-f681e3e7-86f9-47e6-ae62-ad67c0fb194c.png)
